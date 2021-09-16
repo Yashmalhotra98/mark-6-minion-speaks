@@ -29,27 +29,90 @@ var txtInput = document.querySelector("#txt-input");
 var outputDiv = document.querySelector('#output');
 console.log(txtInput);
 
+// var serverURL = "https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json";
+
+var serverURL = "https://api.funtranslations.com/translate/";
+
+function getTranlationURL(text) {
+    return serverURL + "?" + "text=" + text;
+}
+
+function errorHandler(error) {
+    console.log("Error occured!", error);
+    alert("Something wrong with server! Try again after sometime");
+};
+
 function clickHandler() {
     // console.log("clicked!");
     // console.log("Input", txtInput.value);
-    outputDiv.innerText = "adsffef " + txtInput.value;
+    // outputDiv.innerText = "adsffef " + txtInput.value;
 
-};
+    var inputText = txtInput.value; //taking Input
 
-// The clickHandler is our Callback
-// Callback - Any function or method which takes another function as an input is called a calback
+    // calling server for processing our input
+    fetch(getTranlationURL(inputText))
+        .then(Response => Response.json())
+        .then(json => {
+                console.log(json.contents.translated))
+            .catch(errorHandler)
+        };
 
-btnTranslate.addEventListener("click", clickHandler);
+    // The clickHandler is our Callback
+    // Callback - Any function or method which takes another function as an input is called a calback
 
-// "click", "scroll", etc. are predefined events.
+    btnTranslate.addEventListener("click", clickHandler);
 
-// addEventListener - takes an HTML event(like touch, scroll, click, etc) for a specified object
-// whenever the described event gets called(fired) and executes the specified function.
+    // "click", "scroll", etc. are predefined events.
 
-// addEventListener - adds an event to an HTML element
+    // addEventListener - takes an HTML event(like touch, scroll, click, etc) for a specified object
+    // whenever the described event gets called(fired) and executes the specified function.
 
-// Whenever the JS variable btnTranslate listens the value(event) "click",
-//  it calls the following specified function.
+    // addEventListener - adds an event to an HTML element
 
-// querySelector() for -  Input element with an attribute name = 'translator' 
-// input element- attribute "name = "translator"" - "input(element)[name(attribute)= "translator()value"]"
+    // Whenever the JS variable btnTranslate listens the value(event) "click",
+    //  it calls the following specified function.
+
+    // querySelector() for -  Input element with an attribute name = 'translator' 
+    // input element- attribute "name = "translator"" - "input(element)[name(attribute)= "translator()value"]"
+
+
+    // SERVER CALL FROM JS
+
+    //     var url = "https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json?text=I am Yash Malhotra";
+    // fetch(url).then(Response => Response.json()).then(json => console.log(json));
+
+    // // calling many requests
+
+    // //  (Non-Working Solution)
+
+    // const text1 = "IronMan";
+    // const text2 = "BatMan";
+    // const text3 = "ShaktiMan";
+
+    // function cosntructURL(text) {
+    //     var url = "https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json" "?text="+ text;
+    //     return fetch(url).then(Response => Response.json()).then(json => console.log(json));
+    // };
+
+    // constructURL(text1);
+
+    // OR (Working Solution)
+
+    // function constructURL(text){
+    //     var serverURL = "https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json" 
+    //     return serverURL + "?" + "text="+ text;
+    // }
+
+    // fetch(constructURL(text1)).then(response => response.json()).then( json => console.log(json));
+
+    // ERROR HANDLING  -- VERY IMPORTANT CONCEPT
+
+    // .catch() - is a callback function so whenever it is called 
+    // inside it is called with a anather function and inside catch(), catch itself passes the error 
+    // as an argument to the called function, as shown below.
+
+    // function catch(Callbackfn) { 
+    //     //  Do Something...
+    //     // Something More...
+    //     Callbackfn(error);
+    // }
