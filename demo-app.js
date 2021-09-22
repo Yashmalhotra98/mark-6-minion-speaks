@@ -20,10 +20,16 @@ var btnTranslate = document.querySelector("#btn-translate"); // making connectio
 // button and the JS variable  btnTranslate. or assigning the HTML button tag(event) having the 
 // specified button-id (#btn-translate) with the JS variable btnTranslate.
 
+
 // querySelector("") -  It returns the first CSS Selector that matches a specified
 // CSS Selecotr(s) in the document. 
 
-// querySelector - selects a pre-specified query(question)
+// querySelector - selects a pre-specified query(question) i.e CSS Selector in the document.
+// It also creates a link between the specified CSS Selector & and the JS Variable/Object.
+// Hence whatever we do with that variable is then displayed on the UI/View of the application, i.e., 
+// (whenever the variable value is updated either by using innerText or InnerHTMlor textContent, etc.) It will get updated on the Screen as well or can be mani pulated by using 
+// any of the mentioned JS DOM Tags.
+
 
 var txtInput = document.querySelector("#txt-input");
 var outputDiv = document.querySelector('#output');
